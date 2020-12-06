@@ -5,7 +5,7 @@
 \alias{households}
 \title{Households data}
 \format{
-A \href{tibble::tibble-package}{tibble}.
+A tibble (see \link[tibble:tibble-package]{tibble::tibble-package}).
 \describe{
 \item{id_hh}{Household identifier.}
 \item{ecv_year}{The year the survey was conducted. Variables refer to

@@ -5,7 +5,7 @@
 \alias{individuals}
 \title{Individuals data}
 \format{
-A \href{tibble::tibble-package}{tibble}.
+A tibble (see \link[tibble:tibble-package]{tibble::tibble-package}).
 }
 \source{
 \href{https://ine.es/dyngs/INEbase/en/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=resultados&secc=1254736195153&idp=1254735976608#!tabs-1254736195153}{Microdata at INE, the Spanish Statistical Office}
