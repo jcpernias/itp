@@ -6,8 +6,8 @@
 \alias{itp-package}
 \title{itp: Intergenerational Transmission of Poverty}
 \description{
-Data and code to study poverty and the transmission of poverty
-    across generations in Spain. Data is taken from the Spanish Encuesta de
+Data and code to study poverty and the transmission of poverty 
+    across generations in Spain. Data is taken from the Spanish Encuesta de 
     Condiciones de Vida (ECV) collected by the Spanish Statistical Office, INE.
 }
 \seealso{

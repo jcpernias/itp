@@ -218,7 +218,7 @@ households <-
 individuals <-
   bind_rows(ecv2005_p, ecv2011_p, ecv2019_p) %>%
   transmute(id_p = as.integer((RB010 - 2000) * 10000000 + RB030),
-            id_hh = trunc(RB030 / 100),
+            id_hh = as.integer((RB010 - 2000) * 10000000 + trunc(RB030 / 100)),
             ecv_year = factor(RB010, levels = c(2005, 2011, 2019)),
             weight_p = RB050,
             year_birth = RB080,
