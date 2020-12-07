@@ -222,7 +222,10 @@ individuals <-
             ecv_year = factor(RB010, levels = c(2005, 2011, 2019)),
             weight_p = RB050,
             year_birth = RB080,
-            female = RB090 == 2,
+            sex =
+              factor(case_when(RB090 == 1 ~ 'Male',
+                               RB090 == 2 ~ 'Female'),
+                     levels = c('Female', 'Male')),
             absent = RB200 == 2,
             lowjob = vrLOWJOB == 1,
             eu2020 = vrEU2020 == 1,
