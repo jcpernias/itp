@@ -362,11 +362,11 @@ individuals <-
                                PT190 == 6 ~ well_being_levels[6]),
                      levels = well_being_levels),
             pov_fin_hardship =
-              factor(case_when(PT200 == 1 ~ fin_hardship_levels[1],
-                               PT200 == 2 ~ fin_hardship_levels[2],
-                               PT200 == 3 ~ fin_hardship_levels[3],
-                               PT200 == 4 ~ fin_hardship_levels[4],
-                               PT200 == 5 ~ fin_hardship_levels[5]),
+              factor(case_when(PM100 == 1 ~ fin_hardship_levels[1],
+                               PM100 == 2 ~ fin_hardship_levels[2],
+                               PM100 == 3 ~ fin_hardship_levels[3],
+                               PM100 == 4 ~ fin_hardship_levels[4],
+                               PM100 == 5 ~ fin_hardship_levels[5]),
                      levels = fin_hardship_levels)
   )
 
