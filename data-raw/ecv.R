@@ -181,6 +181,11 @@ for (year in years) {
 }
 
 urb_levels <- c('High', 'Med', 'Low')
+
+type_hh_levels <- function(x) {
+  glue("HH_{formatC(x, width = 2, flag='0')}")
+}
+
 nation_levels <- c('Spain', 'EU', 'Other')
 educ_levels <- c('No', 'Prim', 'Sec 1st', 'Sec 2nd', 'Tert')
 pov_educ_levels <- c('Low', 'Med', 'High')
@@ -208,11 +213,13 @@ households <-
             weight_hh = DB090,
             urb = factor(urb_levels[DB100], levels = urb_levels),
             size_hh = HX040,
-            type_hh = factor(HX060),
+            type_hh =
+              factor(type_hh_levels(HX060),
+                     levels = type_hh_levels(1:14)),
             cunits = HX240,
             ydisp_hh = vhRentaa,
             pov_hh = vhPobreza == 1,
-            dep_hh = vhMATDEP == 1)
+            depriv_hh = vhMATDEP == 1)
 
 individuals <-
   bind_rows(ecv2005_p, ecv2011_p, ecv2019_p) %>%
