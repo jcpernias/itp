@@ -340,7 +340,6 @@ individuals <-
               factor(case_when(year > 2005 ~ PT150,
                                year == 2005 ~ str_sub(PM070, end = 1)),
                      levels = as.character(0:9)),
-            pov_mother_sit = PT160,
             pov_mworker =
               case_when(year == 2019 ~ PT160 %in% 1:2,
                         year == 2011 ~ PT160 == 1,
