@@ -227,6 +227,7 @@ individuals <-
             id_hh = as.integer((RB010 - 2000) * 10000000 + trunc(RB030 / 100)),
             ecv_year = factor(RB010, levels = c(2005, 2011, 2019)),
             year_birth = RB080,
+            age = as.integer(RB010 - RB080 - 1),
             sex =
               factor(case_when(RB090 == 1 ~ 'Male',
                                RB090 == 2 ~ 'Female'),
