@@ -271,9 +271,8 @@ individuals <-
               factor(str_sub(PL051, end = 1),
                      levels = as.character(0:9)),
             pov_eligible =
-              case_when(year == 2019 ~ PT220_F == -6,
-                        year == 2019 ~ PT010_F == -6,
-                        year == 2019 ~ PM010_F == -5),
+              case_when(year > 2005 ~ age >= 25 & age <= 59,
+                        year == 2005 ~ age >= 25 & age <= 65),
             pov_institution =
               case_when(ecv_year == 2019 ~ PT220 == 2,
                         ecv_year == 2011 ~ PT010 == 5,
