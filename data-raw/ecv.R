@@ -175,11 +175,11 @@ build_people_db <- function(year) {
 }
 
 years <- c(2005, 2011, 2019)
-for (year in years) {
-  assign(glue("ecv{year}_hh"), build_household_db(year))
-  assign(glue("ecv{year}_p"), build_people_db(year))
-}
 
+ecv_hh <- purrr::map(years, build_household_db) %>% bind_rows()
+ecv_p <- purrr::map(years, build_people_db) %>% bind_rows()
+
+# Factor levels
 urb_levels <- c('High', 'Med', 'Low')
 
 type_hh_levels <- function(x) {
@@ -204,8 +204,7 @@ region_table <-
 region_codes <- unname(region_table)
 
 
-households <-
-  bind_rows(ecv2005_hh, ecv2011_hh, ecv2019_hh) %>%
+households <- ecv_hh %>%
   transmute(id_hh = as.integer((DB010 - 2000) * 10000000 + DB030),
             ecv_year = factor(DB010, levels = c(2005, 2011, 2019)),
             region = factor(region_table[DB040], levels = region_codes),
@@ -221,8 +220,7 @@ households <-
             pov_hh = vhPobreza == 1,
             depriv_hh = vhMATDEP == 1)
 
-individuals <-
-  bind_rows(ecv2005_p, ecv2011_p, ecv2019_p) %>%
+individuals <- ecv_p %>%
   transmute(id_p = as.integer((RB010 - 2000) * 10000000 + RB030),
             id_hh = as.integer((RB010 - 2000) * 10000000 + trunc(RB030 / 100)),
             ecv_year = factor(RB010, levels = c(2005, 2011, 2019)),
@@ -260,106 +258,112 @@ individuals <-
             work_years = PL200,
             full_time = PL031 %in% c(1, 3) | PL030 == 1,
             part_time = PL031 %in% c(2, 4) | PL030 == 2,
-            self = case_when(year > 2005 ~ PL031 %in% c(3, 4),
-                             year == 2005 ~ PL040 %in% c(1, 2)),
-            worker = case_when(year > 2005 ~ PL031 %in% c(1, 2),
-                               year == 2005 ~ PL040 == 3),
+            self = case_when(ecv_year != 2005 ~ PL031 %in% c(3, 4),
+                             ecv_year == 2005 ~ PL040 %in% c(1, 2)),
+            worker = case_when(ecv_year != 2005 ~ PL031 %in% c(1, 2),
+                               ecv_year == 2005 ~ PL040 == 3),
             unempl = PL031 == 5 | PL030 == 3,
             inactive = PL031 %in% 6:11 | PL030 %in% 4:9,
             has_worked = PL015 == 1,
             occup =
               factor(str_sub(PL051, end = 1),
-                     levels = as.character(0:9)),
-            pov_eligible =
-              case_when(year > 2005 ~ age >= 25 & age <= 59,
-                        year == 2005 ~ age >= 25 & age <= 65),
-            pov_institution =
+                     levels = as.character(0:9)))
+
+pov_trans <- ecv_p %>%
+  transmute(id_p = as.integer((RB010 - 2000) * 10000000 + RB030),
+            ecv_year = factor(RB010, levels = c(2005, 2011, 2019)),
+            age = as.integer(RB010 - RB080 - 1),
+            eligible =
+              case_when(ecv_year == 2019 ~ PT220_F == 1,
+                        ecv_year == 2011 ~ PT010_F == 1,
+                        ecv_year == 2005 ~ PM010_F == 1),
+            institution =
               case_when(ecv_year == 2019 ~ PT220 == 2,
                         ecv_year == 2011 ~ PT010 == 5,
                         ecv_year == 2005 ~ PM010 == 7),
-            pov_mabsent =
+            mabsent =
               case_when(ecv_year == 2019 ~ PT230 != 1,
                         ecv_year == 2011 ~ !(PT010 %in% c(1, 3)),
                         ecv_year == 2005 ~ !(PM010 %in% c(1, 2, 4))),
-            pov_fabsent =
+            fabsent =
               case_when(ecv_year == 2019 ~ PT240 != 1,
                         ecv_year == 2011 ~ !(PT010 %in% c(1, 2)),
                         ecv_year == 2005 ~ !(PM010 %in% c(1, 3, 5))),
-            pov_adults = PT020,
-            pov_children = PT030,
-            pov_siblings = PM035,
-            pov_nworking = PT040,
-            pov_fcountry =
+            adults = PT020,
+            children = PT030,
+            siblings = PM035,
+            nworking = PT040,
+            fcountry =
               factor(case_when(PT060 == 1 ~ nation_levels[1],
                                PT060 == 2 ~ nation_levels[2],
                                PT060 > 2 ~ nation_levels[3]),
                      levels = nation_levels),
-            pov_fnation =
+            fnation =
               factor(case_when(PT070 == 1 ~ nation_levels[1],
                                PT070 == 2 ~ nation_levels[2],
                                PT070 > 2 ~ nation_levels[3]),
                      levels = nation_levels),
-            pov_mcountry =
+            mcountry =
               factor(case_when(PT090 == 1 ~ nation_levels[1],
                                PT090 == 2 ~ nation_levels[2],
                                PT090 > 2 ~ nation_levels[3]),
                      levels = nation_levels),
-            pov_mnation =
+            mnation =
               factor(case_when(PT100 == 1 ~ nation_levels[1],
                                PT100 == 2 ~ nation_levels[2],
                                PT100 > 2 ~ nation_levels[3]),
                      levels = nation_levels),
-            pov_feduc =
-              factor(case_when(PT110 == 1 | PM040 <= 2 ~ pov_educ_levels[1],
-                               PT110 == 2 | PM040 == 3 ~ pov_educ_levels[2],
-                               PT110 == 3 | PM040 >= 3 ~ pov_educ_levels[3]),
-                     levels = pov_educ_levels),
-            pov_meduc =
-              factor(case_when(PT120 == 1 | PM050 <= 2 ~ pov_educ_levels[1],
-                               PT120 == 2 | PM050 == 3 ~ pov_educ_levels[2],
-                               PT120 == 3 | PM050 >= 3 ~ pov_educ_levels[3]),
-                     levels = pov_educ_levels),
-            pov_fworker =
-              case_when(year == 2019 ~ PT130 %in% 1:2,
-                        year == 2011 ~ PT130 == 1,
-                        year == 2005 ~ PM060 == 1),
-            pov_fself =
-              case_when(year == 2019 ~ PT130 == 3,
-                        year == 2011 ~ PT130 == 2,
-                        year == 2005 ~ PM060 %in% 2:3),
-            pov_funempl =
-              case_when(year == 2019 ~ PT130 == 4,
-                        year == 2011 ~ PT130 == 3,
-                        year == 2005 ~ PM060 == 4),
-            pov_finactive =
-              case_when(year == 2019 ~ PT130 %in% 6:8,
-                        year == 2011 ~ PT130 %in% 5:6,
-                        year == 2005 ~ PM060 %in% 5:7),
-            pov_foccup =
-              factor(case_when(year > 2005 ~ PT150,
-                               year == 2005 ~ str_sub(PM070, end = 1)),
+            feduc =
+              factor(case_when(PT110 == 1 | PM040 <= 2 ~ educ_levels[1],
+                               PT110 == 2 | PM040 == 3 ~ educ_levels[2],
+                               PT110 == 3 | PM040 >= 3 ~ educ_levels[3]),
+                     levels = educ_levels),
+            meduc =
+              factor(case_when(PT120 == 1 | PM050 <= 2 ~ educ_levels[1],
+                               PT120 == 2 | PM050 == 3 ~ educ_levels[2],
+                               PT120 == 3 | PM050 >= 3 ~ educ_levels[3]),
+                     levels = educ_levels),
+            fworker =
+              case_when(ecv_year == 2019 ~ PT130 %in% 1:2,
+                        ecv_year == 2011 ~ PT130 == 1,
+                        ecv_year == 2005 ~ PM060 == 1),
+            fself =
+              case_when(ecv_year == 2019 ~ PT130 == 3,
+                        ecv_year == 2011 ~ PT130 == 2,
+                        ecv_year == 2005 ~ PM060 %in% 2:3),
+            funempl =
+              case_when(ecv_year == 2019 ~ PT130 == 4,
+                        ecv_year == 2011 ~ PT130 == 3,
+                        ecv_year == 2005 ~ PM060 == 4),
+            finactive =
+              case_when(ecv_year == 2019 ~ PT130 %in% 6:8,
+                        ecv_year == 2011 ~ PT130 %in% 5:6,
+                        ecv_year == 2005 ~ PM060 %in% 5:7),
+            foccup =
+              factor(case_when(ecv_year != 2005 ~ PT150,
+                               ecv_year == 2005 ~ str_sub(PM070, end = 1)),
                      levels = as.character(0:9)),
-            pov_mworker =
-              case_when(year == 2019 ~ PT160 %in% 1:2,
-                        year == 2011 ~ PT160 == 1,
-                        year == 2005 ~ PM080 == 1),
-            pov_mself =
-              case_when(year == 2019 ~ PT160 == 3,
-                        year == 2011 ~ PT160 == 2,
-                        year == 2005 ~ PM080 %in% 2:3),
-            pov_munempl =
-              case_when(year == 2019 ~ PT160 == 4,
-                        year == 2011 ~ PT160 == 3,
-                        year == 2005 ~ PM080 == 4),
-            pov_minactive =
-              case_when(year == 2019 ~ PT160 %in% 6:8,
-                        year == 2011 ~ PT160 %in% 5:6,
-                        year == 2005 ~ PM080 %in% 5:7),
-            pov_moccup =
-              factor(case_when(year > 2005 ~ PT180,
-                               year == 2005 ~ str_sub(PM090, end = 1)),
+            mworker =
+              case_when(ecv_year == 2019 ~ PT160 %in% 1:2,
+                        ecv_year == 2011 ~ PT160 == 1,
+                        ecv_year == 2005 ~ PM080 == 1),
+            mself =
+              case_when(ecv_year == 2019 ~ PT160 == 3,
+                        ecv_year == 2011 ~ PT160 == 2,
+                        ecv_year == 2005 ~ PM080 %in% 2:3),
+            munempl =
+              case_when(ecv_year == 2019 ~ PT160 == 4,
+                        ecv_year == 2011 ~ PT160 == 3,
+                        ecv_year == 2005 ~ PM080 == 4),
+            minactive =
+              case_when(ecv_year == 2019 ~ PT160 %in% 6:8,
+                        ecv_year == 2011 ~ PT160 %in% 5:6,
+                        ecv_year == 2005 ~ PM080 %in% 5:7),
+            moccup =
+              factor(case_when(ecv_year != 2005 ~ PT180,
+                               ecv_year == 2005 ~ str_sub(PM090, end = 1)),
                      levels = as.character(0:9)),
-            pov_well_being =
+            well_being =
               factor(case_when(PT190 == 1 ~ well_being_levels[1],
                                PT190 == 2 ~ well_being_levels[2],
                                PT190 == 3 ~ well_being_levels[3],
@@ -367,15 +371,16 @@ individuals <-
                                PT190 == 5 ~ well_being_levels[5],
                                PT190 == 6 ~ well_being_levels[6]),
                      levels = well_being_levels),
-            pov_fin_hardship =
+            fin_hardship =
               factor(case_when(PM100 == 1 ~ fin_hardship_levels[1],
                                PM100 == 2 ~ fin_hardship_levels[2],
                                PM100 == 3 ~ fin_hardship_levels[3],
                                PM100 == 4 ~ fin_hardship_levels[4],
                                PM100 == 5 ~ fin_hardship_levels[5]),
-                     levels = fin_hardship_levels)
-  )
-
+                     levels = fin_hardship_levels)) %>%
+  filter(eligible == TRUE, institution == FALSE) %>%
+  select(-c(eligible, institution))
 
 usethis::use_data(households, compress = 'xz', overwrite = TRUE)
 usethis::use_data(individuals, compress = 'xz', overwrite = TRUE)
+usethis::use_data(pov_trans, compress = 'xz', overwrite = TRUE)

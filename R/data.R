@@ -2,7 +2,7 @@
 #'
 #' Household data from the ECV for the years 2005, 2011, and 2019.
 #'
-#' @format A tibble (see [tibble::tibble-package]).
+#' @format A tibble (see [tibble::tibble-package]) with columns:
 #' \describe{
 #'   \item{id_hh}{Household identifier.}
 #'   \item{ecv_year}{The year the survey was conducted. Data refer to
@@ -67,7 +67,71 @@
 #'
 #' Personal data from the ECV for the years 2005, 2011, and 2019.
 #'
-#' @format A tibble (see [tibble::tibble-package]).
-#'
+#' @format A tibble (see [tibble::tibble-package]) with columns:
+#'  \describe{
+#'   \item{id_p}{Person identifier.}
+#'   \item{id_hh}{Household identifier.}
+#'   \item{ecv_year}{The year the survey was conducted. Data refer to
+#'   the previous year.}
+#'   \item{birth_year}{The year of birth.}
+#'   \item{age}{Age, in years.}
+#'   \item{sex}{Factor with levels `Female` and `Male`.}
+#'   \item{absent}{}
+#'   \item{lowjob}{}
+#'   \item{eu2020}{}
+#'   \item{weight_p16}{}
+#'   \item{country_birth}{Country of birth.}
+#'   \item{nationality}{}
+#'   \item{educ_year}{}
+#'   \item{educ}{}
+#'   \item{work_age}{}
+#'   \item{work_years}{}
+#'   \item{full_time}{}
+#'   \item{part_time}{}
+#'   \item{self}{}
+#'   \item{worker}{}
+#'   \item{unempl}{}
+#'   \item{inactive}{}
+#'   \item{has_worked}{}
+#'   \item{occup}{}
+#' }
 #' @source \href{https://ine.es/dyngs/INEbase/en/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=resultados&secc=1254736195153&idp=1254735976608#!tabs-1254736195153}{Microdata at INE, the Spanish Statistical Office}
 'individuals'
+
+#' Intergenerational transmission of poverty data
+#'
+#' Data from the ECV for the years 2005, 2011, and 2019.
+#'
+#' @format A tibble (see [tibble::tibble-package]) with columns:
+#'  \describe{
+#'   \item{id_p}{Person identifier.}
+#'   \item{ecv_year}{The year the survey was conducted. Data refer to
+#'   the previous year.}
+#'   \item{age}{Age, in years.}
+#'   \item{mabsent}{}
+#'   \item{fabsent}{}
+#'   \item{adults}{}
+#'   \item{children}{}
+#'   \item{siblings}{}
+#'   \item{nworking}{}
+#'   \item{fcountry}{}
+#'   \item{fnation}{}
+#'   \item{mcountry}{}
+#'   \item{mnation}{}
+#'   \item{feduc}{}
+#'   \item{meduc}{}
+#'   \item{fworker}{}
+#'   \item{fself}{}
+#'   \item{funempl}{}
+#'   \item{finactive}{}
+#'   \item{foccup}{}
+#'   \item{mworker}{}
+#'   \item{mself}{}
+#'   \item{munempl}{}
+#'   \item{minactive}{}
+#'   \item{moccup}{}
+#'   \item{well_being}{}
+#'   \item{fin_hardship}{}
+#' }
+#' @source \href{https://ine.es/dyngs/INEbase/en/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=resultados&secc=1254736195153&idp=1254735976608#!tabs-1254736195153}{Microdata at INE, the Spanish Statistical Office}
+'pov_trans'
