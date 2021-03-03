@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">itp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +91,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/jcpernias/itp/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -130,24 +130,48 @@ the previous year.</p></dd>
 <dt>birth_year</dt><dd><p>The year of birth.</p></dd>
 <dt>age</dt><dd><p>Age, in years.</p></dd>
 <dt>sex</dt><dd><p>Factor with levels <code>Female</code> and <code>Male</code>.</p></dd>
-<dt>absent</dt><dd><p></p></dd>
-<dt>lowjob</dt><dd><p></p></dd>
-<dt>eu2020</dt><dd><p></p></dd>
-<dt>weight_p16</dt><dd><p></p></dd>
-<dt>country_birth</dt><dd><p>Country of birth.</p></dd>
-<dt>nationality</dt><dd><p></p></dd>
-<dt>educ_year</dt><dd><p></p></dd>
-<dt>educ</dt><dd><p></p></dd>
-<dt>work_age</dt><dd><p></p></dd>
-<dt>work_years</dt><dd><p></p></dd>
-<dt>full_time</dt><dd><p></p></dd>
-<dt>part_time</dt><dd><p></p></dd>
-<dt>self</dt><dd><p></p></dd>
-<dt>worker</dt><dd><p></p></dd>
-<dt>unempl</dt><dd><p></p></dd>
-<dt>inactive</dt><dd><p></p></dd>
-<dt>has_worked</dt><dd><p></p></dd>
-<dt>occup</dt><dd><p></p></dd>
+<dt>absent</dt><dd><p>Is the individual temporarily absent from the household?</p></dd>
+<dt>lowjob</dt><dd><p>Does the individual live in a household with low work intensity?</p></dd>
+<dt>eu2020</dt><dd><p>Europe 2020 indicator on poverty and social exclusion.</p></dd>
+<dt>weight_p16</dt><dd><p>Weight for individuals over 16 years old.</p></dd>
+<dt>country_birth</dt><dd><p>Country of birth. Factor with levels:
+<table class='table'>
+<tr><td>Spain</td><td>Spain.</td></tr>
+<tr><td>EU</td><td>European Union (EU 28).</td></tr>
+<tr><td>Other</td><td>Rest of the world.</td></tr>
+</table></p></dd>
+<dt>nationality</dt><dd><p>Nationality. Factor with levels: see <code>country_birth</code>.</p></dd>
+<dt>educ_year</dt><dd><p>Year in which the individual achieved the highest educational level.</p></dd>
+<dt>educ</dt><dd><p>Education level. Factor with levels:
+<table class='table'>
+<tr><td>No</td><td>Less than primary education.</td></tr>
+<tr><td>Prim</td><td>Primary education.</td></tr>
+<tr><td>LowerSec</td><td>Lower secondary education.</td></tr>
+<tr><td>UpperSec</td><td>Upper secondary education.</td></tr>
+<tr><td>Sup</td><td>Tertiary education.</td></tr>
+</table></p></dd>
+<dt>work_age</dt><dd><p>Age at which the individual started working.</p></dd>
+<dt>work_years</dt><dd><p>Years working.</p></dd>
+<dt>full_time</dt><dd><p>Working full-time.</p></dd>
+<dt>part_time</dt><dd><p>Working part-time.</p></dd>
+<dt>self</dt><dd><p>Self-employed?</p></dd>
+<dt>worker</dt><dd><p>Employee?</p></dd>
+<dt>unempl</dt><dd><p>Unemployed?</p></dd>
+<dt>inactive</dt><dd><p>Inactive?</p></dd>
+<dt>has_worked</dt><dd><p>Has the individual ever worked?</p></dd>
+<dt>occup</dt><dd><p>ISCO-08 occupation major group. Factor levels:
+<table class='table'>
+<tr><td>ISCO-1</td><td>Managers.</td></tr>
+<tr><td>ISCO-2</td><td>Professionals.</td></tr>
+<tr><td>ISCO-3</td><td>Technicians and Associate Professionals.</td></tr>
+<tr><td>ISCO-4</td><td>Clerical Support Workers.</td></tr>
+<tr><td>ISCO-5</td><td>Services and Sales Workers.</td></tr>
+<tr><td>ISCO-6</td><td>Skilled Agricultural, Forestry and Fishery Workers.</td></tr>
+<tr><td>ISCO-7</td><td>Craft and Related Trades Workers.</td></tr>
+<tr><td>ISCO-8</td><td>Plant and Machine Operators and Assemblers.</td></tr>
+<tr><td>ISCO-9</td><td>Elementary Occupations.</td></tr>
+<tr><td>ISCO-0</td><td>Armed Forces Occupations.</td></tr>
+</table></p></dd>
 
 </dl>
 

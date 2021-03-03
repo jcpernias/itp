@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Intergenerational transmission of poverty data — pov_trans" />
-<meta property="og:description" content="Data from the ECV for the years 2005, 2011, and 2019." />
+<meta property="og:description" content="Data from the ECV for the years 2005, 2011, and 2019.
+Variables that describe the household of the individuals
+when they were around 14 years old." />
 
 
 
@@ -72,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">itp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -80,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +93,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/jcpernias/itp/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +116,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Data from the ECV for the years 2005, 2011, and 2019.</p>
+    <p>Data from the ECV for the years 2005, 2011, and 2019.
+Variables that describe the household of the individuals
+when they were around 14 years old.</p>
     </div>
 
     <pre class="usage"><span class='va'>pov_trans</span></pre>
@@ -127,30 +131,66 @@
 <dt>ecv_year</dt><dd><p>The year the survey was conducted. Data refer to
 the previous year.</p></dd>
 <dt>age</dt><dd><p>Age, in years.</p></dd>
-<dt>mabsent</dt><dd><p></p></dd>
-<dt>fabsent</dt><dd><p></p></dd>
-<dt>adults</dt><dd><p></p></dd>
-<dt>children</dt><dd><p></p></dd>
-<dt>siblings</dt><dd><p></p></dd>
-<dt>nworking</dt><dd><p></p></dd>
-<dt>fcountry</dt><dd><p></p></dd>
-<dt>fnation</dt><dd><p></p></dd>
-<dt>mcountry</dt><dd><p></p></dd>
-<dt>mnation</dt><dd><p></p></dd>
-<dt>feduc</dt><dd><p></p></dd>
-<dt>meduc</dt><dd><p></p></dd>
-<dt>fworker</dt><dd><p></p></dd>
-<dt>fself</dt><dd><p></p></dd>
-<dt>funempl</dt><dd><p></p></dd>
-<dt>finactive</dt><dd><p></p></dd>
-<dt>foccup</dt><dd><p></p></dd>
-<dt>mworker</dt><dd><p></p></dd>
-<dt>mself</dt><dd><p></p></dd>
-<dt>munempl</dt><dd><p></p></dd>
-<dt>minactive</dt><dd><p></p></dd>
-<dt>moccup</dt><dd><p></p></dd>
-<dt>well_being</dt><dd><p></p></dd>
-<dt>fin_hardship</dt><dd><p></p></dd>
+<dt>mabsent</dt><dd><p>Mother absent?</p></dd>
+<dt>fabsent</dt><dd><p>Father absent?</p></dd>
+<dt>adults</dt><dd><p>(Not available in the 2005 survey). Number of adults (18 years old or above).</p></dd>
+<dt>children</dt><dd><p>(Not available in the 2005 survey). Number of children (less tha 18 years old).</p></dd>
+<dt>siblings</dt><dd><p>(Only in the 2005 survey). Number of siblings.</p></dd>
+<dt>nworking</dt><dd><p>Number of people with a job.</p></dd>
+<dt>fcountry</dt><dd><p>(Not available in the 2005 survey). Father's country of birth. Factor with levels:
+<table class='table'>
+<tr><td>Spain</td><td>Spain.</td></tr>
+<tr><td>EU</td><td>European Union (EU 28).</td></tr>
+<tr><td>Other</td><td>Rest of the world.</td></tr>
+</table></p></dd>
+<dt>mcountry</dt><dd><p>(Not available in the 2005 survey). Mother's country of birth. Factor with levels: see <code>fcountry</code>.</p></dd>
+<dt>fnation</dt><dd><p>(Not available in the 2005 survey). Father's nationality. Factor with levels: see <code>fcountry</code>.</p></dd>
+<dt>mnation</dt><dd><p>(Not available in the 2005 survey). Mother's nationality. Factor with levels: see <code>fcountry</code>.</p></dd>
+<dt>feduc</dt><dd><p>Father's education level. Factor levels:
+<table class='table'>
+<tr><td>Low</td><td>Lower secondary education or less.</td></tr>
+<tr><td>Med</td><td>Upper secondary education.</td></tr>
+<tr><td>Sup</td><td>Tertiary education.</td></tr>
+</table></p></dd>
+<dt>meduc</dt><dd><p>Mother's education level. Factor levels: see <code>feduc</code></p></dd>
+<dt>fworker</dt><dd><p>Was the individual's father self-employed?</p></dd>
+<dt>mworker</dt><dd><p>Was the individual's mother self-employed?</p></dd>
+<dt>fself</dt><dd><p>Was the individual's father an employee?</p></dd>
+<dt>mself</dt><dd><p>Was the individual's mother self-employed?</p></dd>
+<dt>funempl</dt><dd><p>Was the individual's father unemployed?</p></dd>
+<dt>munempl</dt><dd><p>Was the individual's mother unemployed?</p></dd>
+<dt>finactive</dt><dd><p>Was the individual's father inactive?</p></dd>
+<dt>minactive</dt><dd><p>Was the individual's mother unemployed?</p></dd>
+<dt>foccup</dt><dd><p>ISCO-08 occupation major group for the individual's father. Factor levels:
+<table class='table'>
+<tr><td>ISCO-1</td><td>Managers.</td></tr>
+<tr><td>ISCO-2</td><td>Professionals.</td></tr>
+<tr><td>ISCO-3</td><td>Technicians and Associate Professionals.</td></tr>
+<tr><td>ISCO-4</td><td>Clerical Support Workers.</td></tr>
+<tr><td>ISCO-5</td><td>Services and Sales Workers.</td></tr>
+<tr><td>ISCO-6</td><td>Skilled Agricultural, Forestry and Fishery Workers.</td></tr>
+<tr><td>ISCO-7</td><td>Craft and Related Trades Workers.</td></tr>
+<tr><td>ISCO-8</td><td>Plant and Machine Operators and Assemblers.</td></tr>
+<tr><td>ISCO-9</td><td>Elementary Occupations.</td></tr>
+<tr><td>ISCO-0</td><td>Armed Forces Occupations.</td></tr>
+</table></p></dd>
+<dt>moccup</dt><dd><p>ISCO-08 occupation major group for the individual's mother. Factor levels: see <code>foccup</code>.</p></dd>
+<dt>well_being</dt><dd><p>(Not available in the 2005 survey). Household well-being when the individual was a teenager. Factor with levels:
+<table class='table'>
+<tr><td>Very bad.</td></tr>
+<tr><td>Bad.</td></tr>
+<tr><td>Fairly bad.</td></tr>
+<tr><td>Fairly good.</td></tr>
+<tr><td>Good.</td></tr>
+<tr><td>Very good.</td></tr>
+<tr><td></td></tr>
+</table></p></dd>
+<dt>fin_hardship</dt><dd><p>(Only in the 2005 survey). Financial difficulties at home when the individual was a teenager. Factor with levels:
+<table class='table'>
+<tr><td>Very often.</td><td>Often.</td></tr>
+<tr><td>Sometimes.</td><td>Rarely.</td></tr>
+<tr><td>Never.</td><td></td></tr>
+</table></p></dd>
 
 </dl>
 
