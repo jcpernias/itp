@@ -267,7 +267,7 @@ individuals <- ecv_p %>%
             has_worked = PL015 == 1,
             occup =
               factor(str_sub(PL051, end = 1),
-                     levels = as.character(0:9)))
+                     levels = glue("ISCO-{as.character(0:9)}")))
 
 pov_trans <- ecv_p %>%
   transmute(id_p = as.integer((RB010 - 2000) * 10000000 + RB030),
