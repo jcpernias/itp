@@ -11,30 +11,67 @@ A tibble (see \link[tibble:tibble-package]{tibble::tibble-package}) with columns
 \item{ecv_year}{The year the survey was conducted. Data refer to
 the previous year.}
 \item{age}{Age, in years.}
-\item{mabsent}{}
-\item{fabsent}{}
-\item{adults}{}
-\item{children}{}
-\item{siblings}{}
-\item{nworking}{}
-\item{fcountry}{}
-\item{fnation}{}
-\item{mcountry}{}
-\item{mnation}{}
-\item{feduc}{}
-\item{meduc}{}
-\item{fworker}{}
-\item{fself}{}
-\item{funempl}{}
-\item{finactive}{}
-\item{foccup}{}
-\item{mworker}{}
-\item{mself}{}
-\item{munempl}{}
-\item{minactive}{}
-\item{moccup}{}
-\item{well_being}{}
-\item{fin_hardship}{}
+\item{mabsent}{Mother absent?}
+\item{fabsent}{Father absent?}
+\item{adults}{(Not available in the 2005 survey). Number of adults (18 years old or above).}
+\item{children}{(Not available in the 2005 survey). Number of children (less tha 18 years old).}
+\item{siblings}{(Only in the 2005 survey). Number of siblings.}
+\item{nworking}{Number of people with a job.}
+\item{fcountry}{(Not available in the 2005 survey). Father's country of birth. Factor with levels:
+\tabular{ll}{
+Spain	\tab Spain. \cr
+EU \tab European Union (EU 28). \cr
+Other	\tab Rest of the world. \cr
+}}
+\item{mcountry}{(Not available in the 2005 survey). Mother's country of birth. Factor with levels: see \code{fcountry}.}
+\item{fnation}{(Not available in the 2005 survey). Father's nationality. Factor with levels: see \code{fcountry}.}
+\item{mnation}{(Not available in the 2005 survey). Mother's nationality. Factor with levels: see \code{fcountry}.}
+\item{feduc}{Father's education level. Factor levels:
+\tabular{ll}{
+Low	\tab Lower secondary education or less. \cr
+Med	\tab Upper secondary education. \cr
+Sup	\tab Tertiary education. \cr
+}}
+\item{meduc}{Mother's education level. Factor levels: see \code{feduc}}
+\item{fworker}{Was the individual's father self-employed?}
+\item{mworker}{Was the individual's mother self-employed?}
+\item{fself}{Was the individual's father an employee?}
+\item{mself}{Was the individual's mother self-employed?}
+\item{funempl}{Was the individual's father unemployed?}
+\item{munempl}{Was the individual's mother unemployed?}
+\item{finactive}{Was the individual's father inactive?}
+\item{minactive}{Was the individual's mother unemployed?}
+\item{foccup}{ISCO-08 occupation major group for the individual's father. Factor levels:
+\tabular{ll}{
+ISCO-1	\tab Managers. \cr
+ISCO-2	\tab Professionals. \cr
+ISCO-3	\tab Technicians and Associate Professionals. \cr
+ISCO-4	\tab Clerical Support Workers. \cr
+ISCO-5	\tab Services and Sales Workers. \cr
+ISCO-6	\tab Skilled Agricultural, Forestry and Fishery Workers. \cr
+ISCO-7	\tab Craft and Related Trades Workers. \cr
+ISCO-8	\tab Plant and Machine Operators and Assemblers. \cr
+ISCO-9	\tab Elementary Occupations. \cr
+ISCO-0	\tab Armed Forces Occupations. \cr
+}}
+\item{moccup}{ISCO-08 occupation major group for the individual's mother. Factor levels: see \code{foccup}.}
+\item{well_being}{(Not available in the 2005 survey). Household well-being when the individual was a teenager. Factor with levels:
+\tabular{l}{
+Very bad. \cr
+Bad. \cr
+Fairly bad. \cr
+Fairly good. \cr
+Good. \cr
+Very good. \cr
+}}
+\item{fin_hardship}{(Only in the 2005 survey). Financial difficulties at home when the individual was a teenager. Factor with levels:
+\tabular{ll}{
+Very often. \cr
+Often. \cr
+Sometimes. \cr
+Rarely. \cr
+Never. \cr
+}}
 }
 }
 \source{
@@ -45,5 +82,7 @@ pov_trans
 }
 \description{
 Data from the ECV for the years 2005, 2011, and 2019.
+Variables that describe the household of the individuals
+when they were around 14 years old.
 }
 \keyword{datasets}

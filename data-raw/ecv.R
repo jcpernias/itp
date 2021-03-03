@@ -187,7 +187,7 @@ type_hh_levels <- function(x) {
 }
 
 nation_levels <- c('Spain', 'EU', 'Other')
-educ_levels <- c('No', 'Prim', 'Sec 1st', 'Sec 2nd', 'Sup')
+educ_levels <- c('No', 'Prim', 'LowerSec', 'UpperSec', 'Sup')
 pov_educ_levels <- c('Low', 'Med', 'High')
 
 well_being_levels <- c('Very bad', 'Bad', 'Fairly bad',

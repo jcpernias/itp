@@ -14,14 +14,26 @@ the previous year.}
 \item{birth_year}{The year of birth.}
 \item{age}{Age, in years.}
 \item{sex}{Factor with levels \code{Female} and \code{Male}.}
-\item{absent}{Is the individual temporarily absent?}
-\item{lowjob}{Does the individual live in a household with low work intensity? }
+\item{absent}{Is the individual temporarily absent from the household?}
+\item{lowjob}{Does the individual live in a household with low work intensity?}
 \item{eu2020}{Europe 2020 indicator on poverty and social exclusion.}
 \item{weight_p16}{Weight for individuals over 16 years old.}
-\item{country_birth}{Country of birth: factor with levels \code{Spain}, \code{EU} and \code{Other}.}
-\item{nationality}{Nationality: factor with levels \code{Spain}, \code{EU} and \code{Other}.}
+\item{country_birth}{Country of birth. Factor with levels:
+\tabular{ll}{
+Spain	\tab Spain. \cr
+EU \tab European Union (EU 28). \cr
+Other	\tab Rest of the world. \cr
+}}
+\item{nationality}{Nationality. Factor with levels: see \code{country_birth}.}
 \item{educ_year}{Year in which the individual achieved the highest educational level.}
-\item{educ}{Education level. Factor with levels: \code{No}, \code{Prim}, \verb{Sec 1st}, \verb{Sec 2nd} and \code{Tert}.}
+\item{educ}{Education level. Factor with levels:
+\tabular{ll}{
+No	\tab Less than primary education. \cr
+Prim \tab Primary education. \cr
+LowerSec	\tab Lower secondary education. \cr
+UpperSec	\tab Upper secondary education. \cr
+Sup	\tab Tertiary education. \cr
+}}
 \item{work_age}{Age at which the individual started working.}
 \item{work_years}{Years working.}
 \item{full_time}{Working full-time.}
