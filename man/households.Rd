@@ -37,7 +37,7 @@ MEL \tab Melilla \cr
 \item{weight_hh}{Household population weight.}
 \item{urb}{Degree of urbanisation. Factor levels: 'Low', 'Med', and 'High'.}
 \item{size_hh}{Number of persons per household}
-\item{type_hh}{Household type. Values:
+\item{type_hh}{Household type. Factor levels:
 \tabular{ll}{
 HH_01 \tab One member: a man aged less than 30. \cr
 HH_02 \tab One member: a man aged between 30 and 64. \cr

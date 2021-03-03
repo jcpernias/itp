@@ -34,7 +34,7 @@
 #'   \item{weight_hh}{Household population weight.}
 #'   \item{urb}{Degree of urbanisation. Factor levels: 'Low', 'Med', and 'High'.}
 #'   \item{size_hh}{Number of persons per household}
-#'   \item{type_hh}{Household type. Values:
+#'   \item{type_hh}{Household type. Factor levels:
 #'      \tabular{ll}{
 #'        HH_01 \tab One member: a man aged less than 30. \cr
 #'        HH_02 \tab One member: a man aged between 30 and 64. \cr
@@ -76,24 +76,36 @@
 #'   \item{birth_year}{The year of birth.}
 #'   \item{age}{Age, in years.}
 #'   \item{sex}{Factor with levels `Female` and `Male`.}
-#'   \item{absent}{}
-#'   \item{lowjob}{}
-#'   \item{eu2020}{}
-#'   \item{weight_p16}{}
-#'   \item{country_birth}{Country of birth.}
-#'   \item{nationality}{}
-#'   \item{educ_year}{}
-#'   \item{educ}{}
-#'   \item{work_age}{}
-#'   \item{work_years}{}
-#'   \item{full_time}{}
-#'   \item{part_time}{}
-#'   \item{self}{}
-#'   \item{worker}{}
-#'   \item{unempl}{}
-#'   \item{inactive}{}
-#'   \item{has_worked}{}
-#'   \item{occup}{}
+#'   \item{absent}{Is the individual temporarily absent?}
+#'   \item{lowjob}{Does the individual live in a household with low work intensity? }
+#'   \item{eu2020}{Europe 2020 indicator on poverty and social exclusion.}
+#'   \item{weight_p16}{Weight for individuals over 16 years old.}
+#'   \item{country_birth}{Country of birth: factor with levels `Spain`, `EU` and `Other`.}
+#'   \item{nationality}{Nationality: factor with levels `Spain`, `EU` and `Other`.}
+#'   \item{educ_year}{Year in which the individual achieved the highest educational level.}
+#'   \item{educ}{Education level. Factor with levels: `No`, `Prim`, `Sec 1st`, `Sec 2nd` and `Tert`.}
+#'   \item{work_age}{Age at which the individual started working.}
+#'   \item{work_years}{Years working.}
+#'   \item{full_time}{Working full-time.}
+#'   \item{part_time}{Working part-time.}
+#'   \item{self}{Self-employed?}
+#'   \item{worker}{Employee?}
+#'   \item{unempl}{Unemployed?}
+#'   \item{inactive}{Inactive?}
+#'   \item{has_worked}{Has the individual ever worked?}
+#'   \item{occup}{ISCO-08 occupation major group. Factor levels:
+#'      \tabular{ll}{
+#'        ISCO-1	\tab Managers. \cr
+#'        ISCO-2	\tab Professionals. \cr
+#'        ISCO-3	\tab Technicians and Associate Professionals. \cr
+#'        ISCO-4	\tab Clerical Support Workers. \cr
+#'        ISCO-5	\tab Services and Sales Workers. \cr
+#'        ISCO-6	\tab Skilled Agricultural, Forestry and Fishery Workers. \cr
+#'        ISCO-7	\tab Craft and Related Trades Workers. \cr
+#'        ISCO-8	\tab Plant and Machine Operators and Assemblers. \cr
+#'        ISCO-9	\tab Elementary Occupations. \cr
+#'        ISCO-0	\tab Armed Forces Occupations. \cr
+#'      }}
 #' }
 #' @source \href{https://ine.es/dyngs/INEbase/en/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=resultados&secc=1254736195153&idp=1254735976608#!tabs-1254736195153}{Microdata at INE, the Spanish Statistical Office}
 'individuals'
